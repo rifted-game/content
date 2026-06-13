@@ -1,0 +1,18 @@
+{
+	"name": "@rifted/vanilla-src",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Source of the Rifted base content pack (builds vanilla.gcf.json and the @rifted/vanilla bridge)",
+	"scripts": {
+		"build": "rifted build",
+		"pack": "rifted pack",
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"dependencies": {
+		"@rifted/sdk": "^1.1.0"
+	},
+	"devDependencies": {
+		"@rifted/cli": "^1.1.0"
+	}
+}

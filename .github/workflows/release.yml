@@ -1,0 +1,48 @@
+name: Release
+
+on:
+    push:
+        branches: [main]
+
+concurrency:
+    group: release-${{ github.ref }}
+
+permissions:
+    contents: write
+    pull-requests: write
+    id-token: write
+
+jobs:
+    release:
+        name: Release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
+
+            - name: Setup Node
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 24
+                  registry-url: https://registry.npmjs.org
+
+            - name: Install dependencies
+              run: bun install --frozen-lockfile
+
+            - name: Build content
+              run: bun run build
+
+            - name: Create Release PR or Publish bridges
+              uses: changesets/action@v1
+              with:
+                  publish: bun run release
+                  version: bun run version-packages
+                  commit: 'chore: release content'
+                  title: 'chore: release content'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,7 @@
+{
+	"extends": "@rifted/sdk/tsconfig.mod.json",
+	"compilerOptions": {
+		"noEmit": true
+	},
+	"include": ["src"]
+}
