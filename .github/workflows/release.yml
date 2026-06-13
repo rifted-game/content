@@ -46,3 +46,8 @@ jobs:
                   title: 'chore: release content'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  # Optional: an org-scoped automation token from the @rifted npm
+                  # organization. Used for the first publish of a new package
+                  # (OIDC trusted publishing can't create one). When unset, the
+                  # action falls back to OIDC trusted publishing.
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
