@@ -29,7 +29,10 @@ jobs:
               uses: actions/setup-node@v5
               with:
                   node-version: 24
-                  registry-url: https://registry.npmjs.org
+                  # no registry-url: it writes an .npmrc bound to NODE_AUTH_TOKEN
+                  # that shadows the auth changesets/action sets up from NPM_TOKEN
+                  # (and would publish with an empty token → 404). The action and
+                  # OIDC handle npm auth on their own.
 
             - name: Install dependencies
               run: bun install --frozen-lockfile
