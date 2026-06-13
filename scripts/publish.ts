@@ -61,7 +61,8 @@ for (const dir of readdirSync(packagesDir)) {
 	const bridge = JSON.parse(readFileSync(bridgeManifestPath, 'utf-8'))
 	bridge.version = version
 	bridge.repository = { type: 'git', url: `git+${REPO}`, directory: `packages/${dir}` }
-	bridge.publishConfig = { access: 'public', provenance: true }
+	// provenance omitted: sigstore requires a public source repo (this is private)
+	bridge.publishConfig = { access: 'public' }
 	writeFileSync(bridgeManifestPath, `${JSON.stringify(bridge, null, '\t')}\n`)
 
 	// No --provenance: sigstore only attests public source repos, and this repo
