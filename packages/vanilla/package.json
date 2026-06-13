@@ -1,6 +1,6 @@
 {
 	"name": "@rifted/vanilla-src",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"type": "module",
 	"description": "Source of the Rifted base content pack (builds vanilla.gcf.json and the @rifted/vanilla bridge)",
